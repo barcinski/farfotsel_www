@@ -28,44 +28,9 @@
  
 
     <!-- include virtual="inc/common.inc" -->
-    <script type="text/javascript">
+    <script type="text/javascript" src="./js/common.js">
 
-        function inIframe () {
-            try {
-                return window.self !== window.top;
-            } catch (e) {
-                return true;
-            }
-        }
         
-        function isTouchDevice(){
-          try{
-            document.createEvent("TouchEvent");
-            return true;
-          }catch(e){
-            return false;
-          }
-        }
-        
-        
-        var state;
-        var STOPPED = "STOPPED";
-        var STARTED = "STARTED";
-        function stop(){
-          if(state != STOPPED){
-            state = STOPPED;
-            console.log("stop " + location.href);
-          }
-        }
-        
-        function start() {
-          if(state != STARTED){
-            state = STARTED
-            console.log("start "+ location.href);
-          }
-        }
-        
-        var DEBUG_ANIMATE = false;
         
         </script>
         
@@ -172,44 +137,24 @@
             overflow: hidden;
         }
 
-        #enterbtn {
-            bottom:20px;
-            display: block;
-            width: 100%;
-            position: fixed;
-            text-align: center;
-        }
-
-        #enterbtn a {
-            color: black;
-        }
-
-        #enterbtn a:visited {
-            color: black;
-        }
-
-        #enterbtn a:hover {
-            color: red;
-            font-weight: bold;
-        }
-
     </style>
 </head>
 <body>
 <div id="container"></div>
-<!-- <?php $txt_title = ""; ?> -->
+
  <!-- include virtual="inc/moreinfo.inc" -->
  <style type="text/css">
 
     #moreInfoButton {
-            /*background-color: rgba(0, 0, 0, 0);*/
-           /* background-color:transparent;*/
-            position: fixed;
-            z-index: 1000;
-            right: 0px;
-            top:0px;
-            margin: 4px;
-        }
+        /*background-color: rgba(0, 0, 0, 0);*/
+        /* background-color:transparent;*/
+        position: fixed;
+        z-index: 1000;
+        right: 0px;
+        top:0px;
+        margin: 4px;
+    }
+    
     #shopButton {
       position: fixed;
       z-index: 1000;
@@ -268,18 +213,10 @@
       overflow: scroll;
       height: 100vh;
     
-    
-    
-     /* transform:translateX(100%);
-      transition: transform 0.5s ;*/
     }
     
     
-    /*
-    #moreinfo.active{
-      transform:translateX(0%);
-    }
-    */
+    
     #moreinfo a {
       color: black;
     }
@@ -336,22 +273,8 @@
     
     
     </style>
-    <!-- 
-    <a id="logo" href="/" style=""><img src="/images/logo_small_trans.gif" height="55" style="display:block;margin:0px;image-rendering: crisp-edges;margin-top:-2px;margin-bottom:-4px" /></a>
-     -->
-    <script type="text/javascript">
-    if(!inIframe()){
-      if(isTouchDevice()){
-        document.write('<div id="moreInfoButton"><img src="/images/more_info.png" onclick="showInfo();"/></div>');
-      }
-      else{
-        document.write('<div id="moreInfoButton"><img src="/images/more_info.png" onclick="showInfo();"/></div>');
-      }
-      //document.write('<div id="shopButton"><a href="https://shop.farfotsel.com"><img src="/images/shop_btn.png" /></a></div>');
-      //console.log(moreInfoButton);
-    }
-    </script>
-    
+   
+    <div id="moreInfoButton"><img src="/images/more_info.png" onclick="showInfo();"/></div> 
     <div id="moreinfo">
       <a href="/"><img src="/images/logo_small_trans.gif" height="60" style="display:block;margin:0px;image-rendering: crisp-edges;" /></a>
       <div id="closeBtn"><img src="/images/close_btn.png" onclick="hideInfo();"/></div>
@@ -401,10 +324,6 @@
     
     
     </script>
-    
-    
-    
-
 
  <!-- end of include:"inc/moreinfo.inc"-->
 </body>
