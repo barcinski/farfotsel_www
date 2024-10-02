@@ -140,139 +140,10 @@
     </style>
 </head>
 <body>
-<div id="container"></div>
+  <div id="container"></div>
 
- <!-- include virtual="inc/moreinfo.inc" -->
- <style type="text/css">
-
-    #moreInfoButton {
-        /*background-color: rgba(0, 0, 0, 0);*/
-        /* background-color:transparent;*/
-        position: fixed;
-        z-index: 1000;
-        right: 0px;
-        top:0px;
-        margin: 4px;
-    }
-    
-    #shopButton {
-      position: fixed;
-      z-index: 1000;
-      right: 44px;
-      top:0px;
-      margin: 4px ;
-      visibility: hidden;
-    }
-    
-    #shopButton2 {
-      position: absolute;
-      width: 40px;
-      right: 44px;
-      top:0px;
-      margin: 4px ;
-      visibility: hidden;
-    }
-    
-    #moreInfoButton>img, #closeBtn>img , #shopButton>a>img , #shopButton2>a>img {
-        width: 40px;
-        cursor: pointer;
-    }
-    
-    
-    #moreInfoButton:hover>img, #closeBtn:hover>img , #shopButton:hover>a>img , #shopButton2:hover>a>img {
-        opacity: 0.8;
-    
-    }
-    
-    
-    #closeBtn {
-      position: absolute;
-      width: 40px;
-      right: 0px;
-      top:0px;
-      margin: 4px;
-    }
-    
-    
-    #moreinfo {
-      position: fixed;
-      z-index:1001;
-     /* background-color: rgba(210,210,0,0.8);*/
-       background-color: rgba(255,255,255 , 0.8);
-      
-      
-      width: auto;
-      max-width: 480px;
-      /*max-height: 100vh;*/
-      right: 0px;
-      top:0px;
-      display: none;
-      /*overflow: scroll;*/
-      
-      font-family: helvetica;
-      overflow: scroll;
-      height: 100vh;
-    
-    }
-    
-    
-    
-    #moreinfo a {
-      color: black;
-    }
-    
-    #moreinfo>h1 {
-      margin-top: 0.0em;
-      margin-bottom: 0.67em;
-    }
-    
-    
-    #moreinfo>ul {
-      margin-top: 0px;
-      margin-bottom: 1em;
-      padding-left: 30px;
-    }
-    
-    
-    #moreinfo>ul>li>a {
-      color: black;
-    }
-    
-    
-    #moreinfo>ul>#backtolist {
-      padding-top: 1em;
-      color: black;
-    }
-    
-    
-    .padleft {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-    
-    .about {
-      margin-top: 20px;
-      margin-bottom: 0.2em;
-      /*background-color: white;*/
-      display: inline-block;
-      padding-left: 10px;
-      padding-right: 20px;
-      font-weight:bold; 
-     
-    }
-    
-    #logo {
-      z-index:10;
-      position:fixed;
-      top:0px;
-      background-color: rgba(255,255,255 , 0.8);
-      width: 100%;
-    }
-    
-    
-    
-    
-    </style>
+  <!--#include virtual="inc/moreinfo.inc" -->
+    <link rel="stylesheet" href="./css/moreinfo.css"/>
    
     <div id="moreInfoButton"><img src="/images/more_info.png" onclick="showInfo();"/></div> 
     <div id="moreinfo">
@@ -322,9 +193,7 @@
       
     }
     
-    
     </script>
-
  <!-- end of include:"inc/moreinfo.inc"-->
 </body>
 
