@@ -9,35 +9,16 @@
     margin: 4px;
 }
 
-#shopButton {
-  position: fixed;
-  z-index: 1000;
-  right: 44px;
-  top:0px;
-  margin: 4px ;
-  visibility: hidden;
-}
-
-#shopButton2 {
-  position: absolute;
-  width: 40px;
-  right: 44px;
-  top:0px;
-  margin: 4px ;
-  visibility: hidden;
-}
-
-#moreInfoButton>img, #closeBtn>img , #shopButton>a>img , #shopButton2>a>img {
+#moreInfoButton>img, #closeBtn>img  {
     width: 40px;
     cursor: pointer;
 }
 
 
-#moreInfoButton:hover>img, #closeBtn:hover>img , #shopButton:hover>a>img , #shopButton2:hover>a>img {
+#moreInfoButton:hover>img, #closeBtn:hover>img  {
     opacity: 0.8;
 
 }
-
 
 #closeBtn {
   position: absolute;
@@ -46,7 +27,6 @@
   top:0px;
   margin: 4px;
 }
-
 
 #moreinfo {
   position: fixed;
