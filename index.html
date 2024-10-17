@@ -147,10 +147,14 @@
   <!--#include virtual="inc/moreinfo.inc" -->
     <link rel="stylesheet" href="./css/moreinfo.css"/>
    
-    <div id="moreInfoButton"><img src="/images/more_info.png" onclick="showInfo();"/></div> 
+    <div id="moreInfoButton" onclick="toggleInfo();">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div> 
     <div id="moreinfo">
       <a href="/"><img src="/images/logo_small_trans.gif" height="60" style="display:block;margin:0px;image-rendering: crisp-edges;" /></a>
-      <div id="closeBtn"><img src="/images/close_btn.png" onclick="hideInfo();"/></div>
+      <!-- <div id="closeBtn"><img src="/images/close_btn.png" onclick="hideInfo();"/></div> -->
      
       <div class="about">about:</div>
       <div class="padleft">
@@ -177,21 +181,23 @@
     
     
     <script type="text/javascript">
+    function toggleInfo(){
+      if(window.getComputedStyle(moreinfo, null).display === 'none')
+        showInfo();
+      else
+        hideInfo();
+    }
+
     function showInfo() {
-      moreinfo.style.display = 'block';
-      //moreinfo.className = "active";
-      moreInfoButton.style.display = 'none';
-      //container.style.position = 'fixed';
-       event.preventDefault();
+      
+        moreinfo.style.display = 'block';
+        //event.preventDefault();
+        moreInfoButton.classList.add("change");
     }
     
     function hideInfo() {
       moreinfo.style.display = 'none';
-      //container.style.position = '';
-      //moreinfo.className = "";
-      moreInfoButton.style.display = 'inline';
-      
-      
+      moreInfoButton.classList.remove("change");
     }
     
     </script>
