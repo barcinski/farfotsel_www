@@ -380,7 +380,7 @@ var ParticlesScene = (function () {
         this.geometry.addAttribute('color', new THREE.BufferAttribute(colors, 3));
         this.particleSystem = new THREE.Points(this.geometry, shaderMaterial);
         view.scene.add(this.particleSystem);
-        this.imgScanner1 = new ImageScanner("new/images/farfotsel1.png");
+        this.imgScanner1 = new ImageScanner("points/images/farfotsel1.png");
         //this.imgScanner2 = new ImageScanner("./images/farfotsel2.png");
         this.imgScanner1.onComplete = this.onImgScannerComplete.bind(this);
     };
