@@ -211,17 +211,20 @@
 
 				scene.children.reverse();
 
+				onWindowResize();
 				window.addEventListener( 'resize', onWindowResize, false );
 
 			}
 
 			function onWindowResize() {
-
+				
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 
 				renderer.setSize( window.innerWidth, window.innerHeight );
-
+				
+				let scale = Math.min(camera.aspect , 1);
+				scene.scale.set(scale, scale , scale);
 			}
 
 			function generateTexture(height) {
