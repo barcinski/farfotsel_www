@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FK7M7DYNQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0FK7M7DYNQ');
+</script>
+   
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+
+    <title>farfotsel</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta charset="utf-8">
+    
+    <meta property="og:title" content="farfotsel" />
+    <meta property="og:url" content="http://www.farfotsel.com/" />
+    <meta property="og:image" content="http://www.farfotsel.com/images/farfotsel_bg.png" />
+    <meta property="og:type" content="website" />
+    <meta property="fb:app_id" content="853033058137570"/>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenLite.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js"></script>
+    <script src="./js/controls/TrackballControls.js"></script>
+    <script src="./js/controls/MouseControls.js"></script>
+
+    <script src="./js/Detector.js"></script>
+ 
+
+    <script type="text/javascript" src="../js/common.js"></script>    
+
+
+
+    <script src="./js/app.js?now=1"></script>
+
+    
+
+    <script type="x-shader/x-vertex" id="particlesVertexshader">
+        precision lowp float;
+
+        uniform mat4 modelViewMatrix;
+		uniform mat4 projectionMatrix;
+
+		uniform vec3 rayOrgin;
+        uniform vec3 rayDirection;
+
+        attribute vec3 position;
+        attribute vec3 posTarget;
+
+        uniform float sineTime;
+        uniform float mindistance;
+        uniform float repelforce;
+        uniform float pixelSize;
+
+        attribute vec3 color;//using now for velocity
+
+        varying vec3 vColor;
+
+
+        void main() {
+
+            vec3 pos = position + ((posTarget-position) * sineTime) ;
+
+
+
+            //pos *= (color * sineTime);
+
+            vColor  = vec3(0,0,0);
+
+            float dist;//distance to ray
+            vec3 v1 =  pos - rayOrgin ;
+            float directionDistance = dot(rayDirection, v1  );
+
+
+            if ( directionDistance < 0.0 ) {
+                dist =  distance(rayOrgin , pos );
+            }else{
+                v1 = rayDirection * directionDistance + rayOrgin;
+                dist = distance(v1 , pos);
+            }
+
+           // if(dist < mindistance){
+               //vColor.r = 1.0;
+
+
+               v1 = normalize(pos - v1) * (mindistance*0.5 - sqrt(dist*0.5)) * 0.5 ;
+               pos -= v1 * repelforce;
+           // }
+
+
+            vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
+
+            //TODO makepoint size variable on screen size
+            gl_PointSize =  ( 50.0 * pixelSize / length( mvPosition.xyz ) );
+
+
+
+            gl_Position = projectionMatrix * mvPosition;
+
+        }
+
+
+
+	</script>
+
+    <script type="x-shader/x-fragment" id="particlesFragmentshader">
+        precision lowp float;
+
+        varying vec3 vColor;
+
+        void main() {
+
+            gl_FragColor = vec4(  vColor , 1.0 );
+
+        }
+
+		</script>
+
+<style type="text/css">
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        #container {
+            position:absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+  <div id="container"></div>
+</body>
+
+
+
+</html>
