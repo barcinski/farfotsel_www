@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FK7M7DYNQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0FK7M7DYNQ');
+</script>
+   
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+
+    <title>farfotsel</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta charset="utf-8">
+    
+    <meta property="og:title" content="farfotsel" />
+    <meta property="og:url" content="http://www.farfotsel.com/" />
+    <meta property="og:image" content="http://www.farfotsel.com/images/farfotsel_bg.png" />
+    <meta property="og:type" content="website" />
+    <meta property="fb:app_id" content="853033058137570"/>
+
+
+
+<style type="text/css">
+        body {
+            margin: 0px;
+        }
+
+        iframe {
+          width : 100%;
+          height: 100vh;
+          border : none;
+        }
+
+        #container {
+            position:absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+    <iframe src="./points/"></iframe>
+    <iframe src="./falling/"></iframe>
+    <iframe src="./fuzzy/"></iframe>
+  <!--#include virtual="inc/moreinfo.inc" -->
+    <link rel="stylesheet" href="./css/moreinfo.css"/>
+   
+    <div id="moreInfoButton" onclick="toggleInfo();">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div> 
+    <div id="moreinfo">
+      <a href="/"><img src="/images/logo_small_trans.gif" height="60" style="display:block;margin:0px;image-rendering: crisp-edges;" /></a>
+      <!-- <div id="closeBtn"><img src="/images/close_btn.png" onclick="hideInfo();"/></div> -->
+     
+      <div class="about">about:</div>
+      <div class="padleft">
+        Farfotsels come from the spirit world. 
+        They are a curious bunch who like to travel through all worlds and dimensions. 
+        In our world, when they want to be seen, they appear as tiny specks of dust. 
+        <!-- Althoug most of us still fail to notice them.  -->
+        <br/><br/>
+        <!--That's because they are attrcted (or are the cause of, this question has puzzeld the gratest scientist and phillosofers for centuries) static electricity.-->
+      This is an art collaboration between <a href="http://www.rinskedekker.nl">Rinske Dekker</a> and <a href="http://barcinski.nl">Mark Barcinski</a>. We joined our forces to create this website, our personal playground where we experiment and make beautiful stuff for fun. We combine paint and pencil and creative coding to tell the story of farfotsels.
+    
+      
+    
+      </div>
+      
+    
+      <div class="about">follow us:</div><br/>
+      <div class="padleft" style="margin-bottom:27px;">
+        <a href="https://www.facebook.com/farfotsel/"><img src="/images/icons/facebook.png" width="32" height="32" /></a>
+        <a href="https://www.instagram.com/farfotsel/"><img src="/images/icons/instagram.png" width="32" height="32" /></a>
+        <!--<a href="http://farfotsel.tumblr.com/"><img src="/images/icons/tumblr.png" width="32" height="32" /></a>-->
+      </div>
+    </div>
+    
+    
+    <script type="text/javascript">
+    function toggleInfo(){
+      if(window.getComputedStyle(moreinfo, null).display === 'none')
+        showInfo();
+      else
+        hideInfo();
+    }
+
+    function showInfo() {
+      
+        moreinfo.style.display = 'block';
+        //event.preventDefault();
+        moreInfoButton.classList.add("change");
+    }
+    
+    function hideInfo() {
+      moreinfo.style.display = 'none';
+      moreInfoButton.classList.remove("change");
+    }
+    
+    </script>
+ <!-- end of include:"inc/moreinfo.inc"-->
+</body>
+
+
+
+</html>
