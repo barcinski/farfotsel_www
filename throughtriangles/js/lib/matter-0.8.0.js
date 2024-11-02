@@ -3636,9 +3636,9 @@ var Mouse;
 
             if (touches) {
                 mouse.button = 0;
-                event.preventDefault();
+                //event.preventDefault();
             }
-
+            console.log(MouseConstraint)
             mouse.absolute.x = position.x;
             mouse.absolute.y = position.y;
             mouse.position.x = mouse.absolute.x * mouse.scale.x + mouse.offset.x;
@@ -3652,7 +3652,7 @@ var Mouse;
 
             if (touches) {
                 mouse.button = 0;
-                event.preventDefault();
+                //event.preventDefault();
             } else {
                 mouse.button = event.button;
             }
