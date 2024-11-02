@@ -230,7 +230,7 @@
 				let scale = Math.min(camera.aspect , 1);
 				scene.scale.set(scale, scale , scale);
 
-				if(isPaused)renderer.render( scene, camera );
+				if(isPaused)render()
 			}
 
 			function generateTexture(height) {

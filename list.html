@@ -96,7 +96,7 @@
       var frames = document.getElementsByTagName("iframe");
       for(var i = 0 ; i <frames.length; i++){
         var min = frames[i].offsetTop + (frames[i].offsetHeight*0.25) ;
-        var max = min + frames[i].offsetHeight*0.25;
+        var max = min + frames[i].offsetHeight*0.5;
 
         var vpmin = window.pageYOffset;
         var vpmax = vpmin + window.innerHeight;
@@ -105,7 +105,7 @@
         if(max <= vpmin || min > vpmax){
           if(frames[i].contentWindow.stop){
             frames[i].contentWindow.stop();
-            console.log("stop" , frames[i].src , i );
+            //console.log("stop" , frames[i].src , i );
           }
         } 
         else{
