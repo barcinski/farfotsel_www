@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
 			body {
-				background:#030;
+				background:#fff;
 				color:#fff;
 				padding:0;
 				margin:0;
@@ -14,6 +14,8 @@
 				font-family:georgia;
 				text-align:center;
 			}
+
+			
 		</style>
 	</head>
 
@@ -159,6 +161,7 @@
 				renderer.setClearColor( 0xffffff );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.clear();
 				document.body.appendChild( renderer.domElement );
 
 				//
@@ -335,8 +338,6 @@
           function start() {
             if(state != STARTED){
               state = STARTED
-              console.log("start "+ location.href);
-
               isPaused = false;
             }
           }
@@ -344,8 +345,6 @@
           function stop(){
             if(state != STOPPED){
               state = STOPPED;
-              console.log("stop " + location.href);
-
               isPaused = true;
             }
           }
