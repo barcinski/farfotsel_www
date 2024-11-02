@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta property="og:image" content="http://www.farfotsel.com/throughtriangles/tn_throughtriangles.png" />
+
+        <script type="text/javascript" src="../js/common.js"></script>    
+        <script type="text/javascript">
+          var _engine;
+
+          var engineStarted = false;
+          function start() {
+            if(state != STARTED){
+              state = STARTED
+              console.log("start "+ location.href);
+
+              _engine.enabled = true;
+
+              if(!engineStarted){
+                engineStarted = true;
+                Matter.Engine.run(_engine)//.run();
+              }
+            }
+          }
+
+          function stop(){
+            if(state != STOPPED){
+              state = STOPPED;
+              console.log("stop " + location.href);
+
+              _engine.enabled = false;
+            }
+          }
+
+        </script>
+        <!-- only required if using Matter.RenderPixi -->
+        <!--<script type="text/javascript" src="./js/lib/pixi.dev.js"></script>-->
+        <script type="text/javascript" src="./js/lib/matter-0.8.0.js"></script>
+        <script type="text/javascript" src="./js/ThroughTriangles.js"></script>
+        <!-- <link rel="stylesheet" href="./css/style.css" type="text/css"> -->
+        <title>traveling through triangles</title>
+
+        <style type="text/css">
+
+
+          * { 
+              padding: 0; 
+              margin: 0; 
+          }
+
+          body {
+            overflow: hidden;
+          }
+
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+           
+           <span id="demo-start" ></span>
+           
+           <div id="canvas-container"></div>
+       </div>
+      
+   </body>
+ </html>
