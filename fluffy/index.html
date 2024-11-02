@@ -229,6 +229,8 @@
 				
 				let scale = Math.min(camera.aspect , 1);
 				scene.scale.set(scale, scale , scale);
+
+				if(isPaused)renderer.render( scene, camera );
 			}
 
 			function generateTexture(height) {
@@ -316,16 +318,6 @@
 				
 				camera.position.z = 120;
 				camera.lookAt( scene.position );
-
-				// for ( var i = 0, l = scene.children.length; i < l; i ++ ) {
-
-				// 	var mesh = scene.children[ i ];
-				// 	mesh.rotation.x = Math.sin( time * 4 ) * i * 0.001;
-				// 	mesh.rotation.z = Math.sin( time * 6 ) * i * 0.001;
-				// 	//mesh.position.x = Math.sin( time * 4 ) * i * i * 0.005;
-				// 	//mesh.position.z = Math.cos( time * 6 ) * i * i * 0.005;
-
-				// }
 
 				renderer.render( scene, camera );
 
