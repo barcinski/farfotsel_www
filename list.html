@@ -49,12 +49,12 @@
 
     </style>
 </head>
-<body>
+<body onscroll="checkIframeInViewport()">
     <iframe src="./pointy/"></iframe>
     <iframe src="./falling/"></iframe>
     <iframe src="./fluffy/"></iframe>
     <iframe src="./throughtriangles/"></iframe>
-  <!--#include virtual="inc/moreinfo.inc" -->
+  
     <link rel="stylesheet" href="./css/moreinfo.css"/>
    
     <div id="moreInfoButton" onclick="toggleInfo();">
@@ -91,6 +91,41 @@
     
     
     <script type="text/javascript">
+    var reloading = {};
+    function checkIframeInViewport(){
+      var frames = document.getElementsByTagName("iframe");
+      for(var i = 0 ; i <frames.length; i++){
+        var min = frames[i].offsetTop + (frames[i].offsetHeight*0.25) ;
+        var max = min + frames[i].offsetHeight*0.25;
+
+        var vpmin = window.pageYOffset;
+        var vpmax = vpmin + window.innerHeight;
+
+       
+        if(max <= vpmin || min > vpmax){
+          if(frames[i].contentWindow.stop){
+            frames[i].contentWindow.stop();
+            console.log("stop" , frames[i].src , i );
+          }
+        } 
+        else{
+          if(!frames[i].contentWindow.document.body || frames[i].contentWindow.document.body.children.length == 0){
+            if(!reloading[frames[i].src]){
+              frames[i].src = frames[i].src;
+              reloading[frames[i].src] = true;
+            }
+            
+             
+            return;
+          }
+
+          if(frames[i].contentWindow.start)frames[i].contentWindow.start();
+
+        }
+       
+      }
+    }
+
     function toggleInfo(){
       if(window.getComputedStyle(moreinfo, null).display === 'none')
         showInfo();
@@ -111,7 +146,7 @@
     }
     
     </script>
- <!-- end of include:"inc/moreinfo.inc"-->
+ 
 </body>
 
 

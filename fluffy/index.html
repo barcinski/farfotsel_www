@@ -133,6 +133,7 @@
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 			var camera, scene, renderer;
+			var isPaused = true;
 
 			var dtPosition = new THREE.TextureLoader().load( 'textures/furfotsel.png' , function(texture){
 				init();
@@ -296,7 +297,7 @@
 
 				requestAnimationFrame( animate );
 
-				render();
+				if(!isPaused)render();
 
 			}
 
@@ -327,6 +328,28 @@
 			}
 
 		</script>
+		<script type="text/javascript" src="../js/common.js"></script>    
+        <script type="text/javascript">
+         
+          function start() {
+            if(state != STARTED){
+              state = STARTED
+              console.log("start "+ location.href);
+
+              isPaused = false;
+            }
+          }
+
+          function stop(){
+            if(state != STOPPED){
+              state = STOPPED;
+              console.log("stop " + location.href);
+
+              isPaused = true;
+            }
+          }
+
+        </script>
 
 	</body>
 </html>
