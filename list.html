@@ -49,11 +49,11 @@
 
     </style>
 </head>
-<body onscroll="checkIframeInViewport()">
-    <iframe src="./pointy/"></iframe>
-    <iframe src="./falling/"></iframe>
-    <iframe src="./fluffy/"></iframe>
-    <iframe src="./throughtriangles/"></iframe>
+<body onload="checkIframeInViewport()" onscroll="checkIframeInViewport()">
+    <iframe id="pointy" src="./pointy/"></iframe>
+    <iframe id="falling" src="./falling/"></iframe>
+    <iframe id="fluffy" src="./fluffy/"></iframe>
+    <iframe id="throughtriangles" src="./throughtriangles/"></iframe>
   
     <link rel="stylesheet" href="./css/moreinfo.css"/>
    
@@ -76,10 +76,14 @@
         <!--That's because they are attrcted (or are the cause of, this question has puzzeld the gratest scientist and phillosofers for centuries) static electricity.-->
       This is an art collaboration between <a href="http://www.rinskedekker.nl">Rinske Dekker</a> and <a href="http://barcinski.nl">Mark Barcinski</a>. We joined our forces to create this website, our personal playground where we experiment and make beautiful stuff for fun. We combine paint and pencil and creative coding to tell the story of farfotsels.
     
-      
-    
       </div>
-      
+      <div class="about">quick nav:</div>
+      <div class="padleft">
+        <a href="#pointy">point cloud</a><br/>
+        <a href="#falling">falling</a><br/>
+        <a href="#fluffy">fluffy</a><br/>
+        <a href="#throughtriangles">through triangles</a>
+      </div>
     
       <div class="about">follow us:</div><br/>
       <div class="padleft" style="margin-bottom:27px;">
@@ -95,8 +99,8 @@
     function checkIframeInViewport(){
       var frames = document.getElementsByTagName("iframe");
       for(var i = 0 ; i <frames.length; i++){
-        var min = frames[i].offsetTop + (frames[i].offsetHeight*0.25) ;
-        var max = min + frames[i].offsetHeight*0.5;
+        var min = frames[i].offsetTop + (frames[i].offsetHeight*0.5) ;
+        var max = min + frames[i].offsetHeight*0;
 
         var vpmin = window.pageYOffset;
         var vpmax = vpmin + window.innerHeight;
