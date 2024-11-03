@@ -123,7 +123,14 @@
             return;
           }
 
-          if(frames[i].contentWindow.start)frames[i].contentWindow.start();
+          if(frames[i].contentWindow.start){
+            frames[i].contentWindow.start();
+            
+            if(document.location.hash != "#" + frames[i].id){
+              //console.log(document.location.hash , frames[i].id)
+              history.pushState({}, "", "#" + frames[i].id);
+            };
+          }
 
         }
        
