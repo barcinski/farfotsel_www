@@ -221,6 +221,7 @@ var BasicView = (function (_super) {
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
+        if(isPaused)this.renderer.render(this.scene, this.camera);
     };
     return BasicView;
 })(AbstractView);
@@ -536,7 +537,7 @@ var Main = (function () {
     }
     Main.prototype.animate = function () {
         requestAnimationFrame(this.animate.bind(this));
-        this.view.update();
+        if(!isPaused)this.view.update();
         if (this.showStats)
             this.stats.update();
     };

@@ -305,6 +305,9 @@
         canvas.height = renderOptions.height = _sceneHeight;
 
         Demo[_sceneName]();
+        if(state == STOPPED){
+            Engine.render(_engine);
+        }
     };
     
     Demo.updateGravity = function () {

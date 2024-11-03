@@ -36,7 +36,24 @@
     <script src="./js/Detector.js"></script>
  
 
-    <script type="text/javascript" src="../js/common.js"></script>    
+    <script type="text/javascript" src="../js/common.js"></script>   
+    <script type="text/javascript">
+        var isPaused = false;
+        function start() {
+            if(state != STARTED){
+                state = STARTED
+                isPaused = false;
+            }
+        }
+
+        function stop(){
+            if(state != STOPPED){
+                state = STOPPED;
+                isPaused = true;
+            }
+        }
+
+    </script>  
 
 
 
