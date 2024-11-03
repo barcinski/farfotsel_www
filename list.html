@@ -125,8 +125,13 @@
 
           if(frames[i].contentWindow.start){
             frames[i].contentWindow.start();
-            
-            if(document.location.hash != "#" + frames[i].id){
+
+            if(frames[i].id == "pointy"){
+              if(document.location.hash != ""){
+                //console.log("pushstate pointy")
+                history.pushState({}, "", " ");
+              }
+            }else if(document.location.hash != "#" + frames[i].id){
               //console.log(document.location.hash , frames[i].id)
               history.pushState({}, "", "#" + frames[i].id);
             };
