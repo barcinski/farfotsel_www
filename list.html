@@ -29,6 +29,9 @@
 
 
 <style type="text/css">
+        html {
+          scroll-behavior: smooth;
+        }
         body {
             margin: 0px;
         }
@@ -47,16 +50,32 @@
             overflow: hidden;
         }
 
+        .center {
+          position: absolute;
+          display: block;
+          
+          width: 50px;
+          left: 50%;
+          margin-left: -25px;
+          bottom: 20px;
+          
+        }
+
+        .hidden {
+          visibility: hidden;
+          opacity: 0;
+          transition: visibility 0s .5s, opacity .5s linear;
+        }
+
     </style>
 </head>
-<body onload="checkIframeInViewport()" onscroll="checkIframeInViewport()">
+<body onload="onBodyLoad()" onscroll="checkIframeInViewport()">
+    <img id="arrow" src="images/thin_arrow.png" alt="scroll for more" class="center">
     <iframe id="pointy" src="./pointy/"></iframe>
     <iframe id="falling" src="./falling/"></iframe>
     <iframe id="fluffy" src="./fluffy/"></iframe>
     <iframe id="throughtriangles" src="./throughtriangles/"></iframe>
-  
     <link rel="stylesheet" href="./css/moreinfo.css"/>
-   
     <div id="moreInfoButton" onclick="toggleInfo();">
       <div class="bar1"></div>
       <div class="bar2"></div>
@@ -79,7 +98,7 @@
       </div>
       <div class="about">quick nav:</div>
       <div class="padleft">
-        <a href="#pointy">point cloud</a><br/>
+        <a href="#pointy">pointy cloudy</a><br/>
         <a href="#falling">falling</a><br/>
         <a href="#fluffy">fluffy</a><br/>
         <a href="#throughtriangles">through triangles</a>
@@ -95,6 +114,13 @@
     
     
     <script type="text/javascript">
+      function onBodyLoad(){
+        setTimeout(() => {
+          arrow.classList.add("hidden");
+        }, 2000);
+        checkIframeInViewport();
+      }
+
     var reloading = {};
     function checkIframeInViewport(){
       var frames = document.getElementsByTagName("iframe");
