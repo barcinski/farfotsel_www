@@ -69,7 +69,7 @@
 
     </style>
 </head>
-<body onload="onBodyLoad()" onscroll="checkIframeInViewport()">
+<body onload="checkIframeInViewport()" onscroll="checkIframeInViewport()">
     <img id="arrow" src="images/thin_arrow.png" alt="scroll for more" class="center">
     <iframe id="pointy" src="./pointy/"></iframe>
     <iframe id="falling" src="./falling/"></iframe>
@@ -114,12 +114,12 @@
     
     
     <script type="text/javascript">
-      function onBodyLoad(){
-        setTimeout(() => {
-          arrow.classList.add("hidden");
-        }, 2000);
-        checkIframeInViewport();
-      }
+    
+      setTimeout(() => {
+        arrow.classList.add("hidden");
+      }, 2000);
+       
+
 
     var reloading = {};
     function checkIframeInViewport(){
