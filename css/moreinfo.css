@@ -102,6 +102,10 @@
   color: black;
 }
 
+#moreinfo a:hover {
+  color: #85aca8;
+}
+
 #moreinfo>h1 {
   margin-top: 0.0em;
   margin-bottom: 0.67em;
@@ -118,6 +122,8 @@
 #moreinfo>ul>li>a {
   color: black;
 }
+
+
 
 
 #moreinfo>ul>#backtolist {
