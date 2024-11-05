@@ -36,7 +36,7 @@
             margin: 0px;
         }
 
-        iframe {
+        iframe , div.fill {
           width : 100%;
           height: 100vh;
           border : none;
@@ -71,10 +71,15 @@
 </head>
 <body onload="checkIframeInViewport()" onscroll="checkIframeInViewport()">
     <img id="arrow" src="images/thin_arrow.png" alt="scroll for more" class="center">
-    <iframe id="pointy" src="./pointy/"></iframe>
-    <iframe id="falling" src="./falling/"></iframe>
+    <iframe id="pointy" src="./pointy/" style="position: absolute;"></iframe>
+    <div id="fill0" class="fill"></div>
+    <iframe id="falling" src="./falling/" style="position: absolute;"></iframe>
+    <div id="fill1" class="fill"></div>
     <iframe id="fluffy" src="./fluffy/"></iframe>
     <iframe id="throughtriangles" src="./throughtriangles/"></iframe>
+    <iframe id="pointy2" src="./pointy/" ></iframe>
+    <div id="falling2" class="fill"></div>
+
     <link rel="stylesheet" href="./css/moreinfo.css"/>
     <div id="moreInfoButton" onclick="toggleInfo();">
       <div class="bar1"></div>
@@ -124,14 +129,29 @@
 
 
     var reloading = {};
+    var frames = document.getElementsByTagName("iframe");
     function checkIframeInViewport(){
-      var frames = document.getElementsByTagName("iframe");
+      var vpmin = window.pageYOffset;
+      
+      var lastFrame = throughtriangles;
+      if(vpmin >= lastFrame.offsetTop + lastFrame.offsetHeight*2 ){
+        scrollTo({top: fill1.offsetTop, left: 0, behavior: "instant"})
+      }
+
+      //if(vpmin > fluffy.offsetTop)pointy.style.top = pointy2.offsetTop + "px";
+      //else pointy.style.top = "0px";
+
+      if(vpmin > throughtriangles.offsetTop)falling.style.top = falling2.offsetTop + "px";
+      else falling.style.top = fill1.offsetTop + "px";
+
       for(var i = 0 ; i <frames.length; i++){
         var min = frames[i].offsetTop + (frames[i].offsetHeight*0.5) ;
         var max = min + frames[i].offsetHeight*0;
 
-        var vpmin = window.pageYOffset;
+        
         var vpmax = vpmin + window.innerHeight;
+
+       
 
        
         if(max <= vpmin || min > vpmax){
@@ -155,7 +175,7 @@
             frames[i].contentWindow.start();
             //console.log("start" , frames[i].src , i );
 
-            if(frames[i].id == "pointy"){
+            if(frames[i].id == "pointy" || frames[i].id == "pointy2"){
               if(document.location.hash != ""){
                 //console.log("pushstate pointy")
                 history.replaceState(undefined, undefined, " ");
