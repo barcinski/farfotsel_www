@@ -96,12 +96,12 @@
       This is an art collaboration between <a href="http://www.rinskedekker.nl">Rinske Dekker</a> and <a href="http://barcinski.nl">Mark Barcinski</a>. We joined our forces to create this website, our personal playground where we experiment and make beautiful stuff for fun. We combine paint and pencil and creative coding to tell the story of farfotsels.
     
       </div>
-      <div class="about">quick nav:</div>
+      <div class="about" onclick="alert('dfd')">quick nav:</div>
       <div class="padleft">
-        <a href="#pointy">pointy cloudy</a><br/>
-        <a href="#falling">falling</a><br/>
-        <a href="#fluffy">fluffy</a><br/>
-        <a href="#throughtriangles">through triangles</a>
+        <a href="#pointy" onclick="window.scrollTo(0, pointy.offsetTop);return false">pointy cloudy</a><br/>
+        <a href="#falling" onclick="window.scrollTo(0, falling.offsetTop);return false">falling</a><br/>
+        <a href="#fluffy" onclick="window.scrollTo(0, fluffy.offsetTop);return false">fluffy</button><br/>
+        <a href="#throughtriangles" onclick="window.scrollTo(0, throughtriangles.offsetTop);return false">through triangles</a>
       </div>
     
       <div class="about">follow us:</div><br/>
@@ -151,15 +151,16 @@
 
           if(frames[i].contentWindow.start){
             frames[i].contentWindow.start();
+            //console.log("start" , frames[i].src , i );
 
             if(frames[i].id == "pointy"){
               if(document.location.hash != ""){
                 //console.log("pushstate pointy")
-                history.pushState({}, "", " ");
+                history.replaceState(undefined, undefined, " ");
               }
             }else if(document.location.hash != "#" + frames[i].id){
               //console.log(document.location.hash , frames[i].id)
-              history.pushState({}, "", "#" + frames[i].id);
+              history.replaceState(undefined, undefined, "#" + frames[i].id)
             };
           }
 
