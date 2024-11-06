@@ -29,9 +29,7 @@
 
 
 <style type="text/css">
-        html {
-          scroll-behavior: smooth;
-        }
+     
         body {
             margin: 0px;
         }
@@ -51,7 +49,7 @@
         }
 
         .center {
-          position: absolute;
+          position: fixed;
           display: block;
           
           width: 50px;
@@ -69,7 +67,7 @@
 
     </style>
 </head>
-<body onload="checkIframeInViewport()" onscroll="checkIframeInViewport()">
+<body onload="checkIframeInViewport();hideArrow()" onscroll="checkIframeInViewport()">
     <img id="arrow" src="images/thin_arrow.png" alt="scroll for more" class="center">
     <iframe id="pointy" src="./pointy/" style="position: absolute;"></iframe>
     <div id="fill0" class="fill"></div>
@@ -77,7 +75,9 @@
     <div id="fill1" class="fill"></div>
     <iframe id="fluffy" src="./fluffy/"></iframe>
     <iframe id="throughtriangles" src="./throughtriangles/"></iframe>
-    <iframe id="pointy2" src="./pointy/" ></iframe>
+    <iframe id="pointy2" src="./pointy/" ></iframe><!--we have a copy of pointy because of iphone glitch
+    point became unresoponsive after position change.
+    -->
     <div id="falling2" class="fill"></div>
 
     <link rel="stylesheet" href="./css/moreinfo.css"/>
@@ -105,10 +105,10 @@
       </div>
       <div class="about" onclick="alert('dfd')">quick nav:</div>
       <div class="padleft">
-        <a href="#pointy" onclick="window.scrollTo(0, pointy.offsetTop);return false">pointy cloudy</a><br/>
-        <a href="#falling" onclick="window.scrollTo(0, falling.offsetTop);return false">falling</a><br/>
-        <a href="#fluffy" onclick="window.scrollTo(0, fluffy.offsetTop);return false">fluffy</button><br/>
-        <a href="#throughtriangles" onclick="window.scrollTo(0, throughtriangles.offsetTop);return false">through triangles</a>
+        <a href="#pointy" onclick="return onNavClick(pointy)">pointy cloudy</a><br/>
+        <a href="#falling" onclick="return onNavClick(falling)">falling</a><br/>
+        <a href="#fluffy" onclick="return onNavClick(fluffy)">fluffy</button><br/>
+        <a href="#throughtriangles" onclick="return onNavClick(throughtriangles)">through triangles</a>
       </div>
     
       <div class="about">follow us:</div><br/>
@@ -121,11 +121,20 @@
     
     
     <script type="text/javascript">
-    
+    function hideArrow(){
       setTimeout(() => {
         arrow.classList.add("hidden");
-      }, 2000);
+      }, 3000);
+    }
        
+      function onNavClick(target){
+        window.scrollTo({
+          top: target.offsetTop, 
+          left: 0, 
+          behavior: 'smooth'
+        });
+        return false;
+      } 
 
 
     var reloading = {};
