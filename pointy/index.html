@@ -34,6 +34,7 @@
             if(state != STARTED){
                 state = STARTED
                 isPaused = false;
+                if(myTween)myTween.resume();
             }
         }
 
@@ -41,6 +42,7 @@
             if(state != STOPPED){
                 state = STOPPED;
                 isPaused = true;
+                if(myTween)myTween.pause()
             }
         }
 

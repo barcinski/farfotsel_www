@@ -296,6 +296,7 @@ var ImageScanner = (function () {
  */
 ///<reference path="./utils/ImageScanner.ts"/>
 var BufferAttribute = THREE.BufferAttribute;
+var myTween;
 var ParticlesScene = (function () {
     function ParticlesScene() {
         this.particles = 79039;
@@ -307,10 +308,10 @@ var ParticlesScene = (function () {
     ParticlesScene.prototype.tweenToOne = function () {
         var repelTarget = 2 * this.pushOrRepelToggle - 1;
         this.pushOrRepelToggle = !this.pushOrRepelToggle;
-        TweenLite.to(this, 3, { sineTime: 1, repelforce: repelTarget, onComplete: this.tweenToZero.bind(this), delay: 2 });
+        myTween = TweenLite.to(this, 3, { sineTime: 1, repelforce: repelTarget, onComplete: this.tweenToZero.bind(this), delay: 2 });
     };
     ParticlesScene.prototype.tweenToZero = function () {
-        TweenLite.to(this, 3, { sineTime: 0.00, onComplete: this.tweenToOne.bind(this), delay: 8 });
+        myTween = TweenLite.to(this, 3, { sineTime: 0.00, onComplete: this.tweenToOne.bind(this), delay: 8 });
     };
     ParticlesScene.prototype.initScene = function (view) {
         //view.renderer.setClearColor(0);
