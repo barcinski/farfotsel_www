@@ -90,14 +90,26 @@ function onTouchMove(e) {
 }
 
 
-
+requestedAnimationFrame = -1;
+currentFrame = 0;
 function animate() {
-  if(DEBUG_ANIMATE)console.log("many eyes animate");
-  if(state == STARTED)requestAnimationFrame( animate );
+  if(requestedAnimationFrame == currentFrame)return;
+  requestAnimationFrame( doAnimate );
+
+  requestedAnimationFrame = currentFrame;
+
+  
   //stats.update();
 
   // console.log("Manyeyes animate()")
   
+  
+}
+
+function doAnimate(){
+  currentFrame++;
+  if(state != STOPPED)requestAnimationFrame( doAnimate );
+
   var content = document.getElementById("content");
 //console.log(content,content.children.length)
   //or(var i = 0 ; i  <content.)
@@ -112,7 +124,7 @@ function animate() {
     var rot = Math.atan2(dy,dx) - Math.PI/2;
     //console.log(rot);
 
-    child.style["-webkit-transform"] = "rotate("+rot+"rad)";
+    //child.style["-webkit-transform"] = "rotate("+rot+"rad)";
     child.style.transform = "rotate("+rot+"rad)";
   }
 }
@@ -175,7 +187,7 @@ function createPattern(){
 }
 
 createPattern();
-animate();
+//animate();
 
 if(!inIframe()){
   start();
