@@ -82,6 +82,7 @@
     <div id="falling2" class="fill"></div>
 
     <link rel="stylesheet" href="./css/moreinfo.css"/>
+
     <div id="moreInfoButton" onclick="toggleInfo();">
       <div class="bar1"></div>
       <div class="bar2"></div>
@@ -89,8 +90,16 @@
     </div> 
     <div id="moreinfo">
       <img src="/images/logo_small_trans.gif" height="60" style="display:block;margin:0px;image-rendering: crisp-edges;" />
-      <!-- <div id="closeBtn"><img src="/images/close_btn.png" onclick="hideInfo();"/></div> -->
      
+     
+      <div class="padleft">
+        <br/>
+        <label class="switch" for="scrollLock">
+          <input type="checkbox" id="scrollLock" onchange="onLockScrollChange(this)"/>
+          <div class="slider round"></div>
+        </label><label for="scrollLock" class="label">Lock Scrolling</label>
+      </div>
+
       <div class="about">about:</div>
       <div class="padleft">
         Farfotsels come from the spirit world. 
@@ -104,7 +113,8 @@
       We combine paint and pencil and creative coding to tell the story of farfotsels.
     
       </div>
-      <div class="about" onclick="alert('dfd')">quick nav:</div>
+      
+      <div class="about">quick nav:</div>
       <div class="padleft">
         <a href="#pointy" onclick="return onNavClick(pointy)">pointy cloudy</a><br/>
         <a href="#falling" onclick="return onNavClick(falling)">falling</a><br/>
@@ -123,6 +133,23 @@
     
     
     <script type="text/javascript">
+    function onLockScrollChange(src){
+      if(src.checked){
+        onNavClick(lastStarted);
+        disableScroll();
+      }else{
+        enableScroll();
+      }
+    }
+
+    function disableScroll() { 
+      document.body.classList.add("remove-scrolling"); 
+    } 
+
+    function enableScroll() { 
+      document.body.classList.remove("remove-scrolling"); 
+    }
+
     function hideArrow(){
       setTimeout(() => {
         arrow.classList.add("hidden");
@@ -139,7 +166,7 @@
       } 
 
 
-    var reloading = {};
+    var reloading = {}, lastStarted = "";
     var frames = document.getElementsByTagName("iframe");
     function checkIframeInViewport(){
       var vpmin = window.pageYOffset;
@@ -184,6 +211,7 @@
 
           if(frames[i].contentWindow.start){
             frames[i].contentWindow.start();
+            lastStarted = frames[i];
             //console.log("start" , frames[i].src , i );
 
             if(frames[i].id == "pointy" || frames[i].id == "pointy2"){
