@@ -75,6 +75,7 @@
     <div id="fill1" class="fill"></div>
     <iframe id="fluffy" src="./fluffy/"></iframe>
     <iframe id="throughtriangles" src="./throughtriangles/"></iframe>
+    <iframe id="manyeyes" src="./manyeyes/"></iframe>
     <iframe id="pointy2" src="./pointy/" ></iframe><!--we have a copy of pointy because of iphone glitch
     point became unresoponsive after position change.
     -->
@@ -107,8 +108,9 @@
       <div class="padleft">
         <a href="#pointy" onclick="return onNavClick(pointy)">pointy cloudy</a><br/>
         <a href="#falling" onclick="return onNavClick(falling)">falling</a><br/>
-        <a href="#fluffy" onclick="return onNavClick(fluffy)">fluffy</button><br/>
-        <a href="#throughtriangles" onclick="return onNavClick(throughtriangles)">through triangles</a>
+        <a href="#fluffy" onclick="return onNavClick(fluffy)">fluffy<br/>
+        <a href="#throughtriangles" onclick="return onNavClick(throughtriangles)">through triangles</a><br/>
+        <a href="#manyeyes" onclick="return onNavClick(manyeyes)">many eyes</a>
       </div>
     
       <div class="about">follow us:</div><br/>
@@ -142,7 +144,7 @@
     function checkIframeInViewport(){
       var vpmin = window.pageYOffset;
       
-      var lastFrame = throughtriangles;
+      var lastFrame = manyeyes;
       if(vpmin >= lastFrame.offsetTop + lastFrame.offsetHeight*2 ){
         scrollTo({top: fill1.offsetTop, left: 0, behavior: "instant"})
       }
@@ -150,7 +152,7 @@
       //if(vpmin > fluffy.offsetTop)pointy.style.top = pointy2.offsetTop + "px";
       //else pointy.style.top = "0px";
 
-      if(vpmin > throughtriangles.offsetTop)falling.style.top = falling2.offsetTop + "px";
+      if(vpmin > lastFrame.offsetTop)falling.style.top = falling2.offsetTop + "px";
       else falling.style.top = fill1.offsetTop + "px";
 
       for(var i = 0 ; i <frames.length; i++){

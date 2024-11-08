@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Manyeyes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <meta property="og:image" content="http://www.farfotsel.com/manyeyes/tn_manyeyes.jpg" />
+    <script type="text/javascript" src="../js/common.js"></script>  
+    
+  
+    <style>
+      html {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.0);
+      }
+
+      body {
+        margin: 0px;
+        overflow: hidden;
+        background-color: white;
+        /*background-color: #004600;*/
+
+      }
+
+      
+
+      .boy  , .denise{
+        position: absolute;
+      }
+
+      .boy div , .denise div {
+        width:100px;height: 100px;
+        background-size: 100px 100px;
+      }
+
+      .boy div {
+        background-image: url("images/manyeyes0.png");
+      }
+
+      .denise div {
+        /*transform:scale(0.5);*/
+        background-image: url("images/manyeyes1.png");
+      }
+
+
+      
+
+      #content {
+         position:relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        /*margin-left: -50px;
+        margin-top: -50px;*/
+      }
+
+
+    </style>
+    
+  </head>
+<body>
+
+
+  
+<div id="content"></div>
+<script type="text/javascript">
+var mx = 0, my = 0;
+
+init()
+function init() {
+    var el = document;
+    el.addEventListener('mousemove', onMouseMove);
+    el.addEventListener('touchmove', onTouchMove);
+    el.addEventListener('touchstart', onTouchMove);
+
+}
+ 
+function onMouseMove(e) {
+    mx = e.clientX;
+    my = e.clientY;
+
+    //e.touches = [{clientX: e.clientX, clientY: e.clientY}];
+    //onTouchMove(e);
+}
+ 
+function onTouchMove(e) {
+    //do something with e.touches[0].clientX or e.touches[0].clientY
+    mx = e.touches[0].clientX;
+    my = e.touches[0].clientY;
+ 
+}
+
+
+
+function animate() {
+  if(DEBUG_ANIMATE)console.log("many eyes animate");
+  if(state == STARTED)requestAnimationFrame( animate );
+  //stats.update();
+
+  // console.log("Manyeyes animate()")
+  
+  var content = document.getElementById("content");
+//console.log(content,content.children.length)
+  //or(var i = 0 ; i  <content.)
+  var child;
+  for (var i = 0; i < content.children.length;i++){
+    child = content.children[i];
+    
+
+    var dx = child.offsetLeft + content.offsetLeft - mx;
+    var dy = child.offsetTop - content.offsetTop - my;
+
+    var rot = Math.atan2(dy,dx) - Math.PI/2;
+    //console.log(rot);
+
+    child.style["-webkit-transform"] = "rotate("+rot+"rad)";
+    child.style.transform = "rotate("+rot+"rad)";
+  }
+}
+
+
+
+function createPattern(){
+  var imgWidth = 110;
+  var imgHeight = 110;
+
+  var content = document.getElementById("content");
+  while (content.firstChild) {content.removeChild(content.firstChild);}
+    
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    
+  var cols = Math.floor(w / imgWidth)+2;
+  var rows = Math.floor(h / imgHeight)+2;
+
+  cols = Math.floor(cols / 2) * 2; 
+
+  for (var ix = 0; ix < cols; ix++) {
+    for (var iy = 0; iy < rows; iy++) {
+      
+      var newDiv = document.createElement("div"); 
+      var newChild = document.createElement("div");
+
+      newDiv.appendChild(newChild);
+
+      newDiv.className = "boy";
+      //newDiv.onclick = newDiv.onmouseover = function () {toggle(this);};
+      
+
+      if (iy % 4 == 0 || iy % 4 == 1) {
+            if ( ix  % 4 == 0 || ix  % 4 == 1) {
+              newDiv.className = "denise";
+              //newDiv.onclick = newDiv.onmouseover = function () {toggle(this);};
+            }
+          } else {
+            if ( ix  % 4 == 2 || ix % 4 == 3) {
+              newDiv.className = "denise";
+              //newDiv.onclick = newDiv.onmouseover = function () {toggle(this);};
+            }
+          }
+
+      var imgSpace = 50;
+      newDiv.style.left = ix * imgWidth + Math.ceil( (1+ix)/2) * imgSpace + "px";
+      newDiv.style.top =  iy * imgHeight + Math.ceil( (iy)/2) * -25 + "px";
+
+     
+      var rot = ((iy * rows + ix)%10)*36;
+      newDiv.className += " rot"+rot;// + (iy * rows + cols)%10 
+
+      content.appendChild(newDiv);
+    }
+  }
+
+  content.style.marginLeft = (window.innerWidth - (ix * imgWidth + Math.ceil( (1+ix)/2) * imgSpace))/2+ 5 + "px";
+  content.style.marginTop = (window.innerHeight - ( iy * imgHeight + Math.ceil( (iy)/2) * -25))/2 + "px";
+}
+
+createPattern();
+animate();
+
+if(!inIframe()){
+  start();
+}
+
+function start() {
+  if(state != STARTED){
+    state = STARTED
+    console.log("start "+ location.href);
+    animate();
+  }
+}
+
+window.onresize = createPattern;
+
+
+</script>
+</body>
+</html>
