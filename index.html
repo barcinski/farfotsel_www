@@ -28,7 +28,7 @@
 
 
 
-<style type="text/css">
+    <style type="text/css">
      
         body {
             margin: 0px;
@@ -65,6 +65,34 @@
           transition: visibility 0s .5s, opacity .5s linear;
         }
 
+
+#navbar {
+  background-color: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.3s;
+}
+
+#navbar label {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 17px;
+  background-color: #ddd;
+}
+
+#navbar label:hover {
+  background-color: #ddd;
+  color: black;
+  cursor: pointer;
+}
+
+
     </style>
 </head>
 <body onload="checkIframeInViewport();hideArrow()" onscroll="checkIframeInViewport()">
@@ -83,6 +111,10 @@
 
     <link rel="stylesheet" href="./css/moreinfo.css"/>
 
+    <div id="navbar">
+      <label onclick="onOpenClick()">Open</label>
+    </div>
+
     <div id="moreInfoButton" onclick="toggleInfo();">
       <div class="bar1"></div>
       <div class="bar2"></div>
@@ -91,14 +123,6 @@
     <div id="moreinfo">
       <img src="/images/logo_small_trans.gif" height="60" style="display:block;margin:0px;image-rendering: crisp-edges;" />
      
-     
-      <div class="padleft">
-        <br/>
-        <label class="switch" for="scrollLock">
-          <input type="checkbox" id="scrollLock" onchange="onLockScrollChange(this)"/>
-          <div class="slider round"></div>
-        </label><label for="scrollLock" class="label">Lock Scrolling</label>
-      </div>
 
       <div class="about">about:</div>
       <div class="padleft">
@@ -129,130 +153,131 @@
         <a href="https://www.instagram.com/farfotsel/"><img src="/images/icons/instagram.png" width="32" height="32" /></a>
         <!--<a href="http://farfotsel.tumblr.com/"><img src="/images/icons/tumblr.png" width="32" height="32" /></a>-->
       </div>
-    </div>
-    
-    
-    <script type="text/javascript">
-    function onLockScrollChange(src){
-      if(src.checked){
-        onNavClick(lastStarted);
-        disableScroll();
-      }else{
-        enableScroll();
-      }
-    }
-
-    function disableScroll() { 
-      document.body.classList.add("remove-scrolling"); 
-    } 
-
-    function enableScroll() { 
-      document.body.classList.remove("remove-scrolling"); 
-    }
-
-    function hideArrow(){
-      setTimeout(() => {
-        arrow.classList.add("hidden");
-      }, 3000);
-    }
-       
-      function onNavClick(target){
-        window.scrollTo({
-          top: target.offsetTop, 
-          left: 0, 
-          behavior: 'smooth'
-        });
-        return false;
-      } 
-
-
-    var reloading = {}, lastStarted = "";
-    var frames = document.getElementsByTagName("iframe");
-    function checkIframeInViewport(){
-      var vpmin = window.pageYOffset;
-      
-      var lastFrame = manyeyes;
-      if(vpmin >= lastFrame.offsetTop + lastFrame.offsetHeight*2 ){
-        scrollTo({top: fill1.offsetTop, left: 0, behavior: "instant"})
-      }
-
-      //if(vpmin > fluffy.offsetTop)pointy.style.top = pointy2.offsetTop + "px";
-      //else pointy.style.top = "0px";
-
-      if(vpmin > lastFrame.offsetTop)falling.style.top = falling2.offsetTop + "px";
-      else falling.style.top = fill1.offsetTop + "px";
-
-      for(var i = 0 ; i <frames.length; i++){
-        var min = frames[i].offsetTop + (frames[i].offsetHeight*0.5) ;
-        var max = min + frames[i].offsetHeight*0;
-
-        
-        var vpmax = vpmin + window.innerHeight;
-
-       
-
-       
-        if(max <= vpmin || min > vpmax){
-          if(frames[i].contentWindow.stop){
-            frames[i].contentWindow.stop();
-            //console.log("stop" , frames[i].src , i );
-          }
-        } 
-        else{
-          if(!frames[i].contentWindow.document.body || frames[i].contentWindow.document.body.children.length == 0){
-            if(!reloading[frames[i].src]){
-              frames[i].src = frames[i].src;
-              reloading[frames[i].src] = true;
-            }
-            
-             
-            return;
-          }
-
-          if(frames[i].contentWindow.start){
-            frames[i].contentWindow.start();
-            lastStarted = frames[i];
-            //console.log("start" , frames[i].src , i );
-
-            if(frames[i].id == "pointy" || frames[i].id == "pointy2"){
-              if(document.location.hash != ""){
-                //console.log("pushstate pointy")
-                history.replaceState(undefined, undefined, " ");
-              }
-            }else if(document.location.hash != "#" + frames[i].id){
-              //console.log(document.location.hash , frames[i].id)
-              history.replaceState(undefined, undefined, "#" + frames[i].id)
-            };
-          }
-
-        }
-       
-      }
-    }
-
-    function toggleInfo(){
-      if(window.getComputedStyle(moreinfo, null).display === 'none')
-        showInfo();
-      else
-        hideInfo();
-    }
-
-    function showInfo() {
-      
-        moreinfo.style.display = 'block';
-        //event.preventDefault();
-        moreInfoButton.classList.add("change");
-    }
-    
-    function hideInfo() {
-      moreinfo.style.display = 'none';
-      moreInfoButton.classList.remove("change");
-    }
-    
-    </script>
- 
+    </div> 
 </body>
 
+<script type="text/javascript">
+function onOpenClick(){
+  console.log('sd')
+  document.location.href = lastStarted.src;
+}
+
+function hideArrow(){
+  setTimeout(() => {
+    arrow.classList.add("hidden");
+  }, 3000);
+}
+    
+function onNavClick(target){
+  window.scrollTo({
+    top: target.offsetTop, 
+    left: 0, 
+    behavior: 'smooth'
+  });
+  return false;
+} 
+
+
+var reloading = {}, lastStarted = "";
+var frames = document.getElementsByTagName("iframe");
+
+var prevScrollpos = window.pageYOffset;
+function toggleNavBar() {
+  var currentScrollPos = window.pageYOffset;
+  
+  if (prevScrollpos > currentScrollPos && lastStarted.offsetTop - window.pageYOffset <= 100 ) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-52px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
+
+
+function checkIframeInViewport(){
+  toggleNavBar();
+  var vpmin = window.pageYOffset;
+  
+  var lastFrame = manyeyes;
+  if(vpmin >= lastFrame.offsetTop + lastFrame.offsetHeight*2 ){
+    scrollTo({top: fill1.offsetTop, left: 0, behavior: "instant"})
+  }
+
+  //if(vpmin > fluffy.offsetTop)pointy.style.top = pointy2.offsetTop + "px";
+  //else pointy.style.top = "0px";
+
+  if(vpmin > lastFrame.offsetTop)falling.style.top = falling2.offsetTop + "px";
+  else falling.style.top = fill1.offsetTop + "px";
+
+  for(var i = 0 ; i <frames.length; i++){
+    var min = frames[i].offsetTop + (frames[i].offsetHeight*0.5) ;
+    var max = min + frames[i].offsetHeight*0;
+
+    
+    var vpmax = vpmin + window.innerHeight;
+
+    
+
+    
+    if(max <= vpmin || min > vpmax){
+      if(frames[i].contentWindow.stop){
+        frames[i].contentWindow.stop();
+        //console.log("stop" , frames[i].src , i );
+      }
+    } 
+    else{
+      if(!frames[i].contentWindow.document.body || frames[i].contentWindow.document.body.children.length == 0){
+        if(!reloading[frames[i].src]){
+          frames[i].src = frames[i].src;
+          reloading[frames[i].src] = true;
+        }
+        
+          
+        return;
+      }
+
+      if(frames[i].contentWindow.start){
+        frames[i].contentWindow.start();
+        lastStarted = frames[i];
+        //console.log("start" , frames[i].src , i );
+
+        if(frames[i].id == "pointy" || frames[i].id == "pointy2"){
+          if(document.location.hash != ""){
+            //console.log("pushstate pointy")
+            history.replaceState(undefined, undefined, " ");
+          }
+        }else if(document.location.hash != "#" + frames[i].id){
+          //console.log(document.location.hash , frames[i].id)
+          history.replaceState(undefined, undefined, "#" + frames[i].id)
+        };
+      }
+
+    }
+    
+  }
+}
+
+function toggleInfo(){
+  if(window.getComputedStyle(moreinfo, null).display === 'none')
+    showInfo();
+  else
+    hideInfo();
+}
+
+function showInfo() {
+  
+    moreinfo.style.display = 'block';
+    //event.preventDefault();
+    moreInfoButton.classList.add("change");
+}
+
+function hideInfo() {
+  moreinfo.style.display = 'none';
+  moreInfoButton.classList.remove("change");
+}
+
+</script>
 
 
 </html>

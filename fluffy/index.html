@@ -17,6 +17,7 @@
 
 			
 		</style>
+		<script type="text/javascript" src="../js/common.js"></script>    
 	</head>
 
 	<body>
@@ -136,6 +137,7 @@
 
 			var camera, scene, renderer;
 			var isPaused = true;
+			if(!inIframe())isPaused = false;
 
 			var dtPosition = new THREE.TextureLoader().load( 'textures/furfotsel.png' , function(texture){
 				init();
@@ -324,7 +326,7 @@
 			}
 
 		</script>
-		<script type="text/javascript" src="../js/common.js"></script>    
+		
         <script type="text/javascript">
          
           function start() {
