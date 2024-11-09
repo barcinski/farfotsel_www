@@ -187,7 +187,7 @@ function toggleNavBar() {
   
   if (prevScrollpos > currentScrollPos && lastStarted.offsetTop - window.pageYOffset <= 0) {
     document.getElementById("navbar").style.top = "0";
-  } else if(prevScrollpos - currentScrollPos > 5){
+  } else if(currentScrollPos - prevScrollpos > 5 || prevScrollpos - currentScrollPos > 5){
     document.getElementById("navbar").style.top = "-52px";
   }
   prevScrollpos = currentScrollPos;
