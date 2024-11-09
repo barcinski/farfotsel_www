@@ -122,18 +122,23 @@ function doAnimate(){
     var dy = child.offsetTop - content.offsetTop - my;
 
     var rot = Math.atan2(dy,dx) - Math.PI/2;
+    var tRot = child.targetRot;
+
+    rot = (rot + tRot) / 2;
     //console.log(rot);
 
     //child.style["-webkit-transform"] = "rotate("+rot+"rad)";
+
     child.style.transform = "rotate("+rot+"rad)";
+    child.targetRot = rot;
   }
 }
 
 
 
 function createPattern(){
-  var imgWidth = 110;
-  var imgHeight = 110;
+  var imgWidth = 90;
+  var imgHeight = 100;
 
   var content = document.getElementById("content");
   while (content.firstChild) {content.removeChild(content.firstChild);}
@@ -172,17 +177,17 @@ function createPattern(){
 
       var imgSpace = 10;
       newDiv.style.left = ix * imgWidth + Math.ceil( (1+ix)/2) * imgSpace + "px";
-      newDiv.style.top =  iy * imgHeight + Math.ceil( (iy)/2) * -25 + "px";
+      newDiv.style.top =  iy * imgHeight + Math.ceil( (iy)/2) * -10 + "px";
 
      
       var rot = ((iy * rows + ix)%10)*36;
       newDiv.className += " rot"+rot;// + (iy * rows + cols)%10 
-
+      newDiv.targetRot = rot;
       content.appendChild(newDiv);
     }
   }
 
-  content.style.marginLeft = (window.innerWidth - (ix * imgWidth + Math.ceil( (1+ix)/2) * imgSpace))/2+ 5 + "px";
+  content.style.marginLeft = window.innerWidth/2 - (ix * imgWidth + Math.ceil( (1+ix)/2) * imgSpace)/2 + "px";
   content.style.marginTop = (window.innerHeight - ( iy * imgHeight + Math.ceil( (iy)/2) * -25))/2 + "px";
 }
 
