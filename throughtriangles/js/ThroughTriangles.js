@@ -30,9 +30,6 @@
 
             // call init when the page has loaded fully
 
-    
-     // window.addEventListener('load', function() {
-      //demoStart.addEventListener('click', function() {
             
             
             _engine = Engine.create(canvasContainer, {
@@ -41,31 +38,17 @@
                         wireframes: false,
                         showAngleIndicator: false,
                         showDebug: false,
+                        pixelRatio: window.devicePixelRatio,
                         background: 'white'
                     }
                 }
             });
 
-            //_engine.render.options.background = value;
-
-            //Demo.fullscreen();
-
-           // setTimeout(function() {
-                
-                //Engine.run(_engine);
-                start();
-                Demo.updateScene();
-
-           // }, 800);
-       // });
-        
-        //window.addEventListener('deviceorientation', Demo.updateGravity, true);
-        //window.addEventListener('touchstart', Demo.fullscreen);
-        /*window.addEventListener('orientationchange', function() {
-            //Demo.updateGravity();
+           
+            start();
             Demo.updateScene();
-            Demo.fullscreen();
-        }, false);*/
+
+         
 
         window.addEventListener('resize' , Demo.updateScene);
     };
@@ -149,7 +132,7 @@
                 var body = bodies[i];
 
                 if (!body.isStatic && body.speed < 1) {
-                    var forceMagnitude = 0.01 * body.mass;
+                    var forceMagnitude = 0.003 * body.mass;
 
                     Body.applyForce(body, { x: 0, y: 0 }, { 
                         x: (forceMagnitude + Math.random() * forceMagnitude) * Common.choose([1, -1]), 
@@ -288,11 +271,8 @@
         if (!_engine)
             return;
 
-        _sceneWidth = window.innerWidth;
-        _sceneHeight = window.innerHeight;
-        
-        //_sceneWidth = document.documentElement.clientWidth;
-        //_sceneHeight = document.documentElement.clientHeight;
+        _sceneWidth = window.innerWidth ;
+        _sceneHeight = window.innerHeight ;
 
         var boundsMax = _engine.world.bounds.max,
             renderOptions = _engine.render.options,
@@ -303,6 +283,8 @@
 
         canvas.width = renderOptions.width = _sceneWidth;
         canvas.height = renderOptions.height = _sceneHeight;
+
+        Matter.Render.setPixelRatio(_engine.render, _engine.render.options.pixelRatio);
 
         Demo[_sceneName]();
         if(state == STOPPED){
