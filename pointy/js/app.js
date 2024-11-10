@@ -506,7 +506,7 @@ var MyView = (function (_super) {
     MyView.prototype.onWindowResize = function () {
         //this.viewScene.pixelSize = (0.1 + window.innerHeight * 0.05) * window.devicePixelRatio * window.devicePixelRatio;
         
-        this.viewScene.pixelSize = window.devicePixelRatio;//(0.1 + window.innerHeight * 0.001)  ;
+        this.viewScene.pixelSize = window.devicePixelRatio*window.devicePixelRatio/2;//(0.1 + window.innerHeight * 0.001)  ;
         
         _super.prototype.onWindowResize.call(this);
     };
